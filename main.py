@@ -67,6 +67,14 @@ async def abilities(ctx):
         await ctx.send(f"Pokemon'unun yeteneği: {power_name}")
     else:
         await ctx.send("Bulunamadı")
-    
+@bot.command()
+async def info(ctx):
+    author = ctx.author.name
+    pokemon = Pokemon(author)
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        await ctx.send(await pokemon.info())
+    else:
+        await ctx.send("Bulunamadı")
 # Botun çalıştırılması
 bot.run(token)
