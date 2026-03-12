@@ -76,5 +76,13 @@ async def info(ctx):
         await ctx.send(await pokemon.info())
     else:
         await ctx.send("Bulunamadı")
-# Botun çalıştırılması
+@bot.command()
+async def feed(ctx):
+    author = ctx.author.name
+    pokemon = Pokemon(author)
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        await ctx.send(await pokemon.feed())
+    else:
+        await ctx.send("Bulunamadı")
 bot.run(token)
